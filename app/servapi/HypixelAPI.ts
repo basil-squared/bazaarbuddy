@@ -17,7 +17,8 @@ async function requestHypixelData<T extends HypixelBaseResponse>(endpoint: strin
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'API-Key': getApiKey()
+            'API-Key': getApiKey(),
+            'User-Agent': "BazaarBuddy/1.0"
         }
     })
 
@@ -56,7 +57,7 @@ export async function getAllBazaarPriceData(): Promise<HypixelBazaarResponse> {
     return bazaarData
 }
 export async function getItemNamesAndIDs(): Promise<HypixelItem[]> {
-    const data = await requestHypixelData<HypixelItemsResponse>('skyblock/items')
+    const data = await requestHypixelData<HypixelItemsResponse>('resources/skyblock/items')
     const itemsArray = data.items
 
     if (!Array.isArray(itemsArray)) {
