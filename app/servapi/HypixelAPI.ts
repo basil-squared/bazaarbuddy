@@ -52,7 +52,7 @@ export async function getBazaarPriceDataAvg(itemId: string): Promise<Map<string,
     ])
 }
 
-export async function getItemNamesAndIDs(): Promise<Array<Map<string, string>>> {
+export async function getItemNamesAndIDs(): Promise<HypixelItem[]> {
     const data = await requestHypixelData<HypixelItemsResponse>('skyblock/items')
     const itemsArray = data.items
 
@@ -60,10 +60,9 @@ export async function getItemNamesAndIDs(): Promise<Array<Map<string, string>>> 
         throw new Error("Invalid response format: 'items' array missing from Hypixel API.")
     }
 
-
-    return itemsArray.map((item: HypixelItem) => {
-        return new Map<string, string>([
-            [item.id, item.name]
-        ])
-    })
+    // using the interface type is *much much* cleaner, than whatever arraypuke i was doing, and its nicer to fuse.js when i actualy start implementing that.
+    return itemsArray.map(item => ({
+        id: item.id,
+        name: item.name
+    }))
 }
