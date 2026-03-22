@@ -6,7 +6,7 @@ export async function getBazaarData(itemId: string) {
 
     const data = await getBazaarPriceDataAvg(itemId);
 
-    // Use the ?? operator to provide a fallback value
+
     return {
         buy: data.get('BuyAverage') ?? 0,
         sale: data.get('SaleAverage') ?? 0
