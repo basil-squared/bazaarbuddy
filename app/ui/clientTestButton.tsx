@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { getBazaarData } from '../actions' // Import the action, not the API class
+import { getBazaarData } from '../actions' // Import the action, not the API class because the api class is server only
 
 export default function TestButton() {
     const [prices, setPrices] = useState<{ buy: number, sale: number } | null>(null);
