@@ -51,7 +51,10 @@ export async function getBazaarPriceDataAvg(itemId: string): Promise<Map<string,
         ['BuyAverage', buyMean]
     ])
 }
-
+export async function getAllBazaarPriceData(): Promise<HypixelBazaarResponse> {
+    const bazaarData = await requestHypixelData<HypixelBazaarResponse>('skyblock/bazaar')
+    return bazaarData
+}
 export async function getItemNamesAndIDs(): Promise<HypixelItem[]> {
     const data = await requestHypixelData<HypixelItemsResponse>('skyblock/items')
     const itemsArray = data.items

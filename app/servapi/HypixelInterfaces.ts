@@ -19,3 +19,9 @@ interface HypixelItem {
 interface HypixelItemsResponse extends HypixelBaseResponse {
     items: Array<HypixelItem>
 }
+interface RedisBazaarHash {
+    [itemId: string]: {
+        sellPrice: number;
+        buyPrice: number;
+    }
+}
