@@ -43,8 +43,8 @@ export async function getBazaarPriceDataAvg(itemId: string): Promise<Map<string,
     }
 
     const quickStatus = itemData.quick_status
-    const saleMean = Math.round(quickStatus.buyPrice * 10) / 10
-    const buyMean = Math.round(quickStatus.sellPrice * 10) / 10
+    const saleMean = Math.round(quickStatus.sellPrice * 10) / 10
+    const buyMean = Math.round(quickStatus.buyPrice * 10) / 10
 
     return new Map<string, number>([
         ['SaleAverage', saleMean],
