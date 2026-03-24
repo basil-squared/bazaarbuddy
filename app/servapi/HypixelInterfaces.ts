@@ -22,3 +22,22 @@ interface HypixelItemsResponse extends HypixelBaseResponse {
 interface RedisBazaarHash {
   [itemId: string]: string;
 }
+
+
+type IngredientString = string;
+
+interface RecipeGrid {
+  A1?: IngredientString; A2?: IngredientString; A3?: IngredientString;
+  B1?: IngredientString; B2?: IngredientString; B3?: IngredientString;
+  C1?: IngredientString; C2?: IngredientString; C3?: IngredientString;
+}
+
+interface RecipeItem {
+  name: string;
+  count: number; 
+  recipe: RecipeGrid;
+}
+
+interface RecipeDictionary {
+  [itemId: string]: RecipeItem | undefined;
+}

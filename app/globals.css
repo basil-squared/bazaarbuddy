@@ -24,3 +24,57 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer base {
+  :root {
+    
+    --mocha-rosewater: 10 56% 91%;
+    --mocha-flamingo: 0 59% 88%;
+    --mocha-pink: 316 72% 86%;
+    --mocha-mauve: 267 84% 81%;
+    --mocha-red: 343 81% 75%;
+    --mocha-maroon: 350 65% 77%;
+    --mocha-peach: 23 92% 75%;
+    --mocha-yellow: 41 86% 83%;
+    --mocha-green: 115 54% 76%;
+    --mocha-teal: 170 57% 73%;
+    --mocha-sky: 189 71% 73%;
+    --mocha-sapphire: 199 76% 69%;
+    --mocha-blue: 217 92% 76%;
+    --mocha-lavender: 232 97% 85%;
+
+    --mocha-text: 226 64% 88%;
+    --mocha-subtext1: 227 35% 80%;
+    --mocha-subtext0: 228 24% 72%;
+    --mocha-overlay2: 228 17% 64%;
+    --mocha-overlay1: 230 13% 55%;
+    --mocha-overlay0: 231 11% 47%;
+    --mocha-surface2: 233 12% 39%;
+    --mocha-surface1: 234 13% 31%;
+    --mocha-surface0: 237 16% 23%;
+    --mocha-base: 240 21% 15%;
+    --mocha-mantle: 240 21% 12%;
+    --mocha-crust: 240 23% 9%;
+
+    
+    --background: var(--mocha-base);
+    --foreground: var(--mocha-text);
+    --card: var(--mocha-surface0);
+    --card-foreground: var(--mocha-text);
+    --popover: var(--mocha-surface0);
+    --popover-foreground: var(--mocha-text);
+    --primary: var(--mocha-green);
+    --primary-foreground: var(--mocha-base);
+    --secondary: var(--mocha-surface1);
+    --secondary-foreground: var(--mocha-text);
+    --muted: var(--mocha-surface1);
+    --muted-foreground: var(--mocha-subtext0);
+    --accent: var(--mocha-surface1);
+    --accent-foreground: var(--mocha-text);
+    --destructive: var(--mocha-red);
+    --destructive-foreground: var(--mocha-text);
+    --border: var(--mocha-surface1);
+    --input: var(--mocha-surface1);
+    --ring: var(--mocha-lavender);
+  }
+}
