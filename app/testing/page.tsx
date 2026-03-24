@@ -1,7 +1,5 @@
-import TestBox from "../ui/testTextBox"
+import TestBox from "../ui/testTextBox";
 
 export default function Test() {
-    return (
-        <TestBox></TestBox>
-    )
+  return <TestBox></TestBox>;
 }
