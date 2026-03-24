@@ -1,5 +1,5 @@
 "use client";
-
+import formatCoins from "../utils/formatCoins";
 import { useState, useEffect, SyntheticEvent } from "react";
 import { getAllItems, getBazaarData } from "../actions";
 import { createFuseInstance } from "../constants/search";
@@ -18,39 +18,46 @@ function useDebounce(value: any, delay: number) {
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");
+  const [selectedItem,setSelectedItem] = useState("")
   const [fuse, setFuse] = useState<Fuse<HypixelItem>>();
   const [results, setResults] = useState<FuseResult<HypixelItem>[]>();
   const [bazaarPricing, setBazaarPricing] = useState<{
-    buy: string;
-    sale: string;
+    buy: number;
+    sale: number;
   }>();
   const debouncedQuery = useDebounce(query, 500);
   async function handleListClick(id: string, name: string) {
+    setSelectedItem(name)
     setQuery(name);
     setBazaarPricing(undefined);
     setResults([]);
     try {
       const data = await getBazaarData(id);
       setBazaarPricing({
-        buy: data.buy.toString(),
-        sale: data.sale.toString(),
+        buy: data.buy,
+        sale: data.sale,
       });
     } catch (err) {
-      setBazaarPricing({ buy: "N/A", sale: "N/A" });
+      setBazaarPricing({ buy: 0, sale: 0 });
     }
   }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedItem("")
     setQuery(event.target.value);
   };
   useEffect(() => {
     console.log("Debounce triggered");
+    if (debouncedQuery == selectedItem) {
+        setResults([])
+        return
+    }
     if (fuse && debouncedQuery !== "") {
-      console.log("Fuse Present and debounce not empty. searching");
-      setResults(fuse.search(debouncedQuery).slice(0, 10));
+      console.log("Fuse Present and debounce not empty. searching")
+      setResults(fuse.search(debouncedQuery).slice(0, 10))
     } else {
-      console.log("Neither present, abandoning search");
-      setResults([]);
-      return;
+      console.log("Neither present, abandoning search")
+      setResults([])
+      return
     }
   }, [fuse, debouncedQuery]);
   useEffect(() => {
@@ -64,6 +71,7 @@ export default function SearchBox() {
   }, []);
   console.log(results);
   return (
+    <div className = "flex flex-row items-start gap-8">
     <div>
       <div>
         <input
@@ -73,7 +81,7 @@ export default function SearchBox() {
         ></input>
       </div>
 
-      <div>
+      <div >
         <ul className="ml-2">
           {results?.map((result) => (
             <li
@@ -88,6 +96,17 @@ export default function SearchBox() {
           ))}
         </ul>
       </div>
+    </div>
+    {bazaarPricing && ( 
+        <div>
+            <p className = "text-yellow-500">
+                Buy: {formatCoins(bazaarPricing.buy)}  Coins
+            </p>
+            <p className = "text-yellow-500">
+                Sale: {formatCoins(bazaarPricing.sale)} Coins
+            </p>
+        </div>
+    )}
     </div>
   );
 }
