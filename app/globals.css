@@ -5,12 +5,51 @@
   --foreground: #171717;
 }
 
+@import "tailwindcss";
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  
+  --color-mocha-rosewater: hsl(10 56% 91%);
+  --color-mocha-flamingo: hsl(0 59% 88%);
+  --color-mocha-pink: hsl(316 72% 86%);
+  --color-mocha-mauve: hsl(267 84% 81%);
+  --color-mocha-red: hsl(343 81% 75%);
+  --color-mocha-maroon: hsl(350 65% 77%);
+  --color-mocha-peach: hsl(23 92% 75%);
+  --color-mocha-yellow: hsl(41 86% 83%);
+  --color-mocha-green: hsl(115 54% 76%);
+  --color-mocha-teal: hsl(170 57% 73%);
+  --color-mocha-sky: hsl(189 71% 73%);
+  --color-mocha-sapphire: hsl(199 76% 69%);
+  --color-mocha-blue: hsl(217 92% 76%);
+  --color-mocha-lavender: hsl(232 97% 85%);
+  --color-mocha-text: hsl(226 64% 88%);
+  --color-mocha-subtext1: hsl(227 35% 80%);
+  --color-mocha-subtext0: hsl(228 24% 72%);
+  --color-mocha-overlay2: hsl(228 17% 64%);
+  --color-mocha-overlay1: hsl(230 13% 55%);
+  --color-mocha-overlay0: hsl(231 11% 47%);
+  --color-mocha-surface2: hsl(233 12% 39%);
+  --color-mocha-surface1: hsl(234 13% 31%);
+  --color-mocha-surface0: hsl(237 16% 23%);
+  --color-mocha-base: hsl(240 21% 15%);
+  --color-mocha-mantle: hsl(240 21% 12%);
+  --color-mocha-crust: hsl(240 23% 9%);
+
+  
+  --color-background: var(--color-mocha-base);
+  --color-foreground: var(--color-mocha-text);
+  --color-card: var(--color-mocha-surface0);
+  --color-primary: var(--color-mocha-green);
+  --color-secondary: var(--color-mocha-surface1);
+  --color-destructive: var(--color-mocha-red);
+  
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -28,53 +67,6 @@ body {
 @layer base {
   :root {
     
-    --mocha-rosewater: 10 56% 91%;
-    --mocha-flamingo: 0 59% 88%;
-    --mocha-pink: 316 72% 86%;
-    --mocha-mauve: 267 84% 81%;
-    --mocha-red: 343 81% 75%;
-    --mocha-maroon: 350 65% 77%;
-    --mocha-peach: 23 92% 75%;
-    --mocha-yellow: 41 86% 83%;
-    --mocha-green: 115 54% 76%;
-    --mocha-teal: 170 57% 73%;
-    --mocha-sky: 189 71% 73%;
-    --mocha-sapphire: 199 76% 69%;
-    --mocha-blue: 217 92% 76%;
-    --mocha-lavender: 232 97% 85%;
-
-    --mocha-text: 226 64% 88%;
-    --mocha-subtext1: 227 35% 80%;
-    --mocha-subtext0: 228 24% 72%;
-    --mocha-overlay2: 228 17% 64%;
-    --mocha-overlay1: 230 13% 55%;
-    --mocha-overlay0: 231 11% 47%;
-    --mocha-surface2: 233 12% 39%;
-    --mocha-surface1: 234 13% 31%;
-    --mocha-surface0: 237 16% 23%;
-    --mocha-base: 240 21% 15%;
-    --mocha-mantle: 240 21% 12%;
-    --mocha-crust: 240 23% 9%;
-
     
-    --background: var(--mocha-base);
-    --foreground: var(--mocha-text);
-    --card: var(--mocha-surface0);
-    --card-foreground: var(--mocha-text);
-    --popover: var(--mocha-surface0);
-    --popover-foreground: var(--mocha-text);
-    --primary: var(--mocha-green);
-    --primary-foreground: var(--mocha-base);
-    --secondary: var(--mocha-surface1);
-    --secondary-foreground: var(--mocha-text);
-    --muted: var(--mocha-surface1);
-    --muted-foreground: var(--mocha-subtext0);
-    --accent: var(--mocha-surface1);
-    --accent-foreground: var(--mocha-text);
-    --destructive: var(--mocha-red);
-    --destructive-foreground: var(--mocha-text);
-    --border: var(--mocha-surface1);
-    --input: var(--mocha-surface1);
-    --ring: var(--mocha-lavender);
   }
 }

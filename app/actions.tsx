@@ -84,7 +84,7 @@ export async function CalculateCost(
   };
 }
 
-async function CalculateAndItemizeCosts(
+export async function CalculateAndItemizeCosts(
   itemId:string,
   requestedQuantity:number,
   visited=new Set<string>(),
