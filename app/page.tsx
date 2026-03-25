@@ -5,7 +5,7 @@ import ShoppingRow from "./ui/shoppingRow";
 
 export default function Home() {
   return (
-  <ShoppingRow quantity={32} name="Enchanted Oak Log" price={456}></ShoppingRow>
+  <ShoppingRow quantity={32} name="Enchanted Oak Log" price={456} shouldCraft={true}></ShoppingRow>
   )
 }
 // To whoever is reading this, I hope you love the things I make.

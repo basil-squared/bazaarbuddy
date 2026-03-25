@@ -20,69 +20,6 @@ export async function getAllItems() {
 }
 
 const priceCache = new Map<string, number>();
-export async function CalculateCost(
-  itemID: string, 
-  requestedQuantity: number, 
-  visited = new Set<string>(),
-
-) {
-  const recipes = recipeData as RecipeDictionary;
-
-  // prevents circular loops
-  if (visited.has(itemID)) {
-    const data = await getBazaarData(itemID);
-    return { price: data.buy * requestedQuantity, canCraft: false };
-  }
-  visited.add(itemID);
-
-  // raw material
-  if (!recipes[itemID]) {
-    if (!priceCache.has(itemID)) {
-      const data = await getBazaarData(itemID);
-      priceCache.set(itemID, data.buy);
-    }
-    return { 
-      price: (priceCache.get(itemID) || 0) * requestedQuantity, 
-      
-      canCraft: false 
-    };
-  }
-
-  
-  let craftingCost = 0;
-  const recipe = recipes[itemID]!;
-  const entries = Object.entries(recipe.recipe);
-
-  
-  for (const [slot, ingredient] of entries) {
-    if (!ingredient) continue; 
-
-    const [childId, qtyStr] = ingredient.split(":");
-    const qty = parseInt(qtyStr);
-
-    
-    const result = await CalculateCost(childId, qty, new Set(visited));
-    craftingCost += result.price;
-  }
-
-  
-  const costPerSingleItem = craftingCost / recipe.count;
-  
-  
-  const bazaarData = await getBazaarData(itemID);
-  const buyDirectPrice = bazaarData.buy;
-
-  
-  const shouldCraft = costPerSingleItem < buyDirectPrice;
-  const finalUnitPrice = shouldCraft ? costPerSingleItem : buyDirectPrice;
-
-  return {
-    price: finalUnitPrice * requestedQuantity,
-    unitPrice: finalUnitPrice,
-    shouldCraft,
-    canCraft: true
-  };
-}
 
 export async function CalculateAndItemizeCosts(
   itemId:string,
