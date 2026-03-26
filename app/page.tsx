@@ -6,7 +6,7 @@ import ShoppingRow from "./ui/shoppingRow";
 export default function Home() {
   return (
     <div className="w-xl h-auto">
-    <ShoppingRow quantity={3} name="Enchanted Oak Log" price={456} shouldCraft={true}></ShoppingRow>
+    <ShoppingRow quantity={3} unitPrice = {456/3} name="Enchanted Oak Log" price={456} shouldCraft={true}></ShoppingRow>
     </div>
   )
 }

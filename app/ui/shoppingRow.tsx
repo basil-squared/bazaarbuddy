@@ -1,14 +1,19 @@
 'use client'
 import {X} from 'lucide-react'
 import formatCoins from '../utils/formatCoins'
+import { useState } from 'react'
 interface ShoppingItemProps {
     quantity: number,
     name: string,
     price: number,
+    unitPrice: number,
     shouldCraft: boolean
 }
 
-export default function ShoppingRow({quantity,name,price,shouldCraft}: ShoppingItemProps) {
+export default function ShoppingRow({quantity,name,price,shouldCraft,unitPrice}: ShoppingItemProps) {
+    const [coinUnitAmount, setCoinUnitAmount] = useState(`${formatCoins(price)} Coins`)
+    const baseCoinClass = "text-[15cqw] font-bold"
+    const [coinClassName, setCoinClassName] = useState("text-[15cqw] font-bold text-mocha-yellow ")
     const defaultNameClass = "font-bold text-[4cqw]"
     let finalNameClass = ""
     if (shouldCraft) {
@@ -16,7 +21,16 @@ export default function ShoppingRow({quantity,name,price,shouldCraft}: ShoppingI
     } else {
         finalNameClass = `${defaultNameClass} text-mocha-red`
     }
+    function coinsMouseEnterStateChange() {
+        setCoinClassName(`${baseCoinClass} text-mocha-subtext0`)
+        setCoinUnitAmount(`${formatCoins(unitPrice)}/Unit`)
 
+    }
+    function coinsMouseLeaveStateChange() {
+        setCoinClassName(`${baseCoinClass} text-mocha-yellow`)
+        setCoinUnitAmount(`${formatCoins(price)} Coins`)
+
+    }
     return (
     // main shopping row layer
     <div className="@container flex flex-row w-full h-8 max-w-md items-center">
@@ -32,10 +46,10 @@ export default function ShoppingRow({quantity,name,price,shouldCraft}: ShoppingI
             <p  className={finalNameClass}>{name}</p>
         </div>
         
-        <div className = "flex flex-row justify-center items-center border-b-3 flex-grow border-mocha-overlay0"></div>
+        <div className = "flex flex-row justify-center items-center border-b-3 grow border-mocha-overlay0"></div>
         <div className="@container flex flex-row items-center w-[30cqw] h-full rounded-r-full bg-mocha-base justify-center">
                
-            <p className="text-[15cqw] font-bold text-mocha-yellow ">{`${formatCoins(price)} Coins`}</p>
+            <p className={coinClassName} onMouseEnter={coinsMouseEnterStateChange} onMouseLeave={coinsMouseLeaveStateChange}>{coinUnitAmount}</p>
         </div>
 
 
